@@ -1,0 +1,46 @@
+while True:
+    sections_input = input("Введіть кількість розділів (1–20): ")
+
+    if not sections_input.isdigit():
+        print("Помилка! Потрібно ввести додатне ціле число.")
+        continue
+
+    sections_count = int(sections_input)
+
+    if sections_count < 1 or sections_count > 20:
+        print("Помилка! Кількість повинна бути від 1 до 20.")
+    else:
+        break
+
+print("\nОберіть метод сортування:")
+print("1 — Пряме зростання (A → Я)")
+print("2 — Пряме спадання (Я → A)")
+print("3 — За довжиною назв")
+
+while True:
+    method_input = input("Ваш вибір (1/2/3): ")
+
+    if method_input in ("1", "2", "3"):
+        method = int(method_input)
+        break
+    else:
+        print("Неправильний вибір! Введіть 1, 2 або 3.")
+
+sections = []
+
+for i in range(sections_count):
+    name = input(f"Введіть назву розділу {i + 1}: ")
+    sections.append(name)
+
+sections = list(set(sections))
+
+if method == 1:
+    sections.sort()
+elif method == 2:
+    sections.sort(reverse=True)
+elif method == 3:
+    sections.sort(key=len)
+
+print("\nВідсортовані розділи:")
+for item in sections:
+    print(item)
